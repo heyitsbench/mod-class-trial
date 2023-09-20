@@ -1,0 +1,129 @@
+[worldserver]
+
+#
+#    AnnounceEnable
+#        Description: Enable the module announcing its presence.
+#        Default:     true  - (Enabled)
+#                     false - (Disabled)
+
+AnnounceEnable = true
+
+#
+#    ClassTrialEnable
+#        Description: Enable the application of class trials.
+#        Default:     true  - (Enabled)
+#                     false - (Disabled)
+
+ClassTrialEnable = true
+
+#
+#    TrialDungeonLimit
+#        Description: nyi
+#        Default:     0
+
+TrialDungeonLimit = 0
+
+#
+#    TrialRaidLimit
+#        Description: nyi
+#        Default:     0
+
+TrialRaidLimit = 0
+
+#
+#    TrialBattlegroundLimit
+#        Description: nyi
+#        Default:     0
+
+TrialBattlegroundLimit = 0
+
+#
+#    TrialArenaLimit
+#        Description: nyi
+#        Default:     0
+
+TrialArenaLimit = 0
+
+#
+#    TrialQuestLimit
+#        Description: nyi
+#        Default:     0
+
+TrialQuestLimit = 0
+
+#
+#    TrialPlaytimeLimit
+#        Description: nyi
+#        Default:     0
+
+TrialPlaytimeLimit = 0
+
+#
+#    TrialCreationLimitHour
+#        Description: nyi
+#        Default:     0
+
+TrialCreationLimitHour = 0
+
+#
+#    TrialCreationLimitWeek
+#        Description: nyi
+#        Default:     0
+
+TrialCreationLimitWeek = 0
+
+#
+#    AllowCustomize
+#        Description: nyi
+#        Default:     true  - (Enabled)
+#                     false - (Disabled)
+
+AllowCustomize = true
+
+#
+#    AllowRaceChange
+#        Description: nyi
+#        Default:     true  - (Enabled)
+#                     false - (Disabled)
+
+AllowRaceChange = true
+
+#
+#    RestrictRaidGroup
+#        Description: nyi
+#        Default:     false - (Disabled)
+#                     true  - (Enabled)
+
+RestrictRaidGroup = false
+
+#
+#    RestrictGroup
+#        Description: nyi
+#        Default:     false - (Disabled)
+#                     true  - (Enabled)
+
+RestrictGroup = false
+
+#
+#    RestrictMail
+#        Description: nyi
+#        Default:     false - (Disabled)
+#                     true  - (Enabled)
+
+RestrictMail = false
+
+#
+#    RestrictRareLoot
+#        Description: nyi
+#        Default:     false - (Disabled)
+#                     true  - (Enabled)
+
+RestrictRareLoot = false
+
+#
+#    RestrictGuild
+#        Description: nyi
+#        Default:     false - (Disabled)
+#                     true  - (Enabled)
+
+RestrictGuild = false
