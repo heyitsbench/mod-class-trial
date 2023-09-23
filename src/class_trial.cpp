@@ -33,10 +33,19 @@ public:
             return true;
     }
 
+    bool CanSendMail(Player* player, ObjectGuid /*receiverGuid*/, ObjectGuid /*mailbox*/, std::string& /*subject*/, std::string& /*body*/, uint32 /*money*/, uint32 /*COD*/, Item* /*item*/) override
+    {
+        if (!isTrialCharacter(player))
+            return true;
+        if (sConfigMgr->GetOption<bool>("RestrictMail", true))
+            return false;
+        return true;
+    }
+
     bool CanEnterMap(Player* player, MapEntry const* entry, InstanceTemplate const* /*instance*/, MapDifficulty const* /*mapDiff*/, bool /*loginCheck*/) override
     {
         if (!isTrialCharacter(player))
-            return true;;
+            return true;
 
         AchievementCriteriaEntry const* dungeonCount = sAchievementCriteriaStore.LookupEntry(932);
         AchievementCriteriaEntry const* raidCountOne = sAchievementCriteriaStore.LookupEntry(933); // 10-man

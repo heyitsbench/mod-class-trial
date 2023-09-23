@@ -1,6 +1,6 @@
 [worldserver]
 
-#  6/18
+#  9/18
 #
 #    AnnounceEnable
 #        Description: Enable the module announcing its presence.
@@ -107,7 +107,7 @@ RestrictGroup = false
 
 #
 #    RestrictMail
-#        Description: nyi
+#        Description: Class trial characters will not be able to send mail.
 #        Default:     false - (Disabled)
 #                     true  - (Enabled)
 
