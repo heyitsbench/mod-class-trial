@@ -54,7 +54,7 @@ TrialQuestLimit = 0
 
 #
 #    TrialPlaytimeLimit
-#        Description: Limits playtime of a class trial character. Once exceeded, the character will be forcefully deleted at next log-in.
+#        Description: Limits playtime of a class trial character. Once exceeded, the character will be forcefully deleted at next log-in. (Measured in seconds)
 #        Default:     0
 
 TrialPlaytimeLimit = 0
