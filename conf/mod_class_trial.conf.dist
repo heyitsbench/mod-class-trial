@@ -19,14 +19,14 @@ ClassTrialEnable = true
 
 #
 #    TrialDungeonLimit
-#        Description: nyi
+#        Description: Limits the amount of dungeons able to be entered by a class trial character.
 #        Default:     0
 
 TrialDungeonLimit = 0
 
 #
 #    TrialRaidLimit
-#        Description: nyi
+#        Description: Limits the amount of raids able to be entered by a class trial character.
 #        Default:     0
 
 TrialRaidLimit = 0

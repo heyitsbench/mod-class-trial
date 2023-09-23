@@ -1,6 +1,7 @@
 #include "class_trial_loader.h"
 #include "Chat.h"
 #include "Config.h"
+#include "MapMgr.h"
 #include "Player.h"
 #include "ScriptMgr.h"
 
@@ -30,6 +31,24 @@ public:
             return false;
         else
             return true;
+    }
+
+    bool CanEnterMap(Player* player, MapEntry const* entry, InstanceTemplate const* /*instance*/, MapDifficulty const* /*mapDiff*/, bool /*loginCheck*/) override
+    {
+        if (!isTrialCharacter(player))
+            return true;;
+
+        AchievementCriteriaEntry const* dungeonCount = sAchievementCriteriaStore.LookupEntry(932);
+        AchievementCriteriaEntry const* raidCountOne = sAchievementCriteriaStore.LookupEntry(933); // 10-man
+        AchievementCriteriaEntry const* raidCountTwo = sAchievementCriteriaStore.LookupEntry(934); // 25-man
+        uint32 combinedRaidCount = (player->GetAchievementMgr()->GetCriteriaProgress(raidCountOne)->counter + player->GetAchievementMgr()->GetCriteriaProgress(raidCountTwo)->counter);
+
+        if ((player->GetAchievementMgr()->GetCriteriaProgress(dungeonCount)->counter > sConfigMgr->GetOption<uint32>("TrialDungeonLimit", 0)) && sMapStore.LookupEntry(entry->MapID)->IsDungeon())
+            return false;
+        if ((combinedRaidCount > sConfigMgr->GetOption<uint32>("TrialRaidLimit", 0)) && sMapStore.LookupEntry(entry->MapID)->IsRaid())
+            return false;
+
+        return true;
     }
 
     static void imbueTrial(Player* player)
