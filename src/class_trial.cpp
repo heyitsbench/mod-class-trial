@@ -72,6 +72,18 @@ public:
         return true;
     }
 
+    bool CanJoinInArenaQueue(Player* player, ObjectGuid /*BattlemasterGuid*/, uint8 /*arenaslot*/, BattlegroundTypeId /*BGTypeID*/, uint8 /*joinAsGroup*/, uint8 IsRated, GroupJoinBattlegroundResult& /*err*/) override
+    {
+        if (!isTrialCharacter(player))
+            return true;
+
+        AchievementCriteriaEntry const* arenaCount = sAchievementCriteriaStore.LookupEntry(838);
+
+        if ((player->GetAchievementMgr()->GetCriteriaProgress(arenaCount)->counter > sConfigMgr->GetOption<uint32>("TrialArenaLimit", 0)) && IsRated)
+            return false;
+        return true;
+    }
+
     static void imbueTrial(Player* player)
     {
         enlistTrial(player);

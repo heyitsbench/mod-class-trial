@@ -1,6 +1,6 @@
 [worldserver]
 
-#  10/18
+#  11/18
 #
 #    AnnounceEnable
 #        Description: Enable the module announcing its presence.
@@ -40,7 +40,7 @@ TrialBattlegroundLimit = 0
 
 #
 #    TrialArenaLimit
-#        Description: nyi
+#        Description: Limits the amount of rated arenas able to be played by a class trial character.
 #        Default:     0
 
 TrialArenaLimit = 0
