@@ -4,32 +4,51 @@
 #include "Player.h"
 #include "ScriptMgr.h"
 
-class TrialAnnounce : public PlayerScript {
+class TrialOperation : public PlayerScript {
 public:
-    TrialAnnounce() : PlayerScript("TrialAnnounce") { }
+    TrialOperation() : PlayerScript("TrialOperation") { }
 
     void OnLogin(Player* player) override
     {
         if (sConfigMgr->GetOption<bool>("AnnounceEnable", true))
             ChatHandler(player->GetSession()).SendSysMessage(ALERT_MODULE_PRESENCE);
 
+        if (!isTrialCharacter(player))
+            return;
+        if (sConfigMgr->GetOption<bool>("AllowCustomize", true))
+            player->SetAtLoginFlag(AT_LOGIN_CUSTOMIZE);
+        if (sConfigMgr->GetOption<bool>("AllowRaceChange", true))
+            player->SetAtLoginFlag(AT_LOGIN_CHANGE_RACE);
+
         return;
     };
+
+    static void imbueTrial(Player* player)
+    {
+        enlistTrial(player);
+    }
+
+    static void enlistTrial(Player* player)
+    {
+        WorldDatabase.Execute("INSERT INTO mod_classtrial_characters (GUID) VALUES ({})", player->GetGUID().ToString());
+        LOG_DEBUG("module", "Enlisted character {} with a class trial.", player->GetGUID().ToString());
+    }
+
+    static bool isTrialCharacter(Player* player)
+    {
+        LOG_DEBUG("module", "Checking for trial status for character {}.", player->GetGUID().ToString());
+        QueryResult result = WorldDatabase.Query("SELECT GUID FROM mod_classtrial_characters WHERE GUID = {}", player->GetGUID().ToString());
+        if (result)
+            return true;
+        else
+            return false;
+    }
 
 private:
     enum moduleStrings
     {
         ALERT_MODULE_PRESENCE = 40050
     };
-};
-
-class TrialOperation : public PlayerScript {
-public:
-    TrialOperation() : PlayerScript("TrialOperation") { }
-
-    static void imbueTrial(Player* player)
-    {
-    }
 };
 
 using namespace Acore::ChatCommands;
@@ -68,7 +87,6 @@ private:
 void Add_class_trial()
 {
     new TrialOperation();
-    new TrialAnnounce();
 }
 
 void AddSC_class_trial_commandscript()

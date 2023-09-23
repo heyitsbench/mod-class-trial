@@ -74,7 +74,7 @@ TrialCreationLimitWeek = 0
 
 #
 #    AllowCustomize
-#        Description: nyi
+#        Description: Sets customization flag for class trial characters on each login.
 #        Default:     true  - (Enabled)
 #                     false - (Disabled)
 
@@ -82,7 +82,7 @@ AllowCustomize = true
 
 #
 #    AllowRaceChange
-#        Description: nyi
+#        Description: Sets race change flag for class trial characters on each login.
 #        Default:     true  - (Enabled)
 #                     false - (Disabled)
 
