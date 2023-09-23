@@ -91,14 +91,14 @@ public:
 
     static void enlistTrial(Player* player)
     {
-        WorldDatabase.Execute("INSERT INTO mod_classtrial_characters (GUID) VALUES ({})", player->GetGUID().ToString());
-        LOG_DEBUG("module", "Enlisted character {} with a class trial.", player->GetGUID().ToString());
+        WorldDatabase.Execute("INSERT INTO mod_classtrial_characters (GUID) VALUES ({})", player->GetGUID().GetCounter());
+        LOG_DEBUG("module", "Enlisted character {} with a class trial.", player->GetGUID().GetCounter());
     }
 
     static bool isTrialCharacter(Player* player)
     {
-        LOG_DEBUG("module", "Checking for trial status for character {}.", player->GetGUID().ToString());
-        QueryResult result = WorldDatabase.Query("SELECT GUID FROM mod_classtrial_characters WHERE GUID = {}", player->GetGUID().ToString());
+        LOG_DEBUG("module", "Checking for trial status for character {}.", player->GetGUID().GetCounter());
+        QueryResult result = WorldDatabase.Query("SELECT GUID FROM mod_classtrial_characters WHERE GUID = {}", player->GetGUID().GetCounter());
         if (result)
             return true;
         else
