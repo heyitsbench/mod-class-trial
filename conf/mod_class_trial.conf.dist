@@ -1,5 +1,6 @@
 [worldserver]
 
+#  6/18
 #
 #    AnnounceEnable
 #        Description: Enable the module announcing its presence.
@@ -127,3 +128,11 @@ RestrictRareLoot = false
 #                     true  - (Enabled)
 
 RestrictGuild = false
+
+#
+#    RestrictTrade
+#        Description: Class trial characters will not be able to be traded or trade with other characters.
+#        Default:     false - (Disabled)
+#                     true  - (Enabled)
+
+RestrictTrade = false

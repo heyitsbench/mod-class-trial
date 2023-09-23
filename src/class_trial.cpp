@@ -24,6 +24,14 @@ public:
         return;
     };
 
+    bool CanInitTrade(Player* player, Player* target) override
+    {
+        if ((isTrialCharacter(player) || isTrialCharacter(target)) && sConfigMgr->GetOption<bool>("RestrictTrade", true))
+            return false;
+        else
+            return true;
+    }
+
     static void imbueTrial(Player* player)
     {
         enlistTrial(player);
