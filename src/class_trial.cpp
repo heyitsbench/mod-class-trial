@@ -49,9 +49,20 @@ public:
 
     static bool trialHelper(ChatHandler* handler)
     {
+        if (sConfigMgr->GetOption<bool>("ClassTrialEnable", false))
+        {
+            handler->SendSysMessage(ALERT_MODULE_DISABLED);
+            return true;
+        }
         applyTrial::imbueTrial(handler->GetPlayer());
         return true;
     }
+
+private:
+    enum moduleStrings
+    {
+        ALERT_MODULE_DISABLED = 40051
+    };
 };
 
 void Add_class_trial()
