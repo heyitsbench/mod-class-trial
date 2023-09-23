@@ -1,6 +1,6 @@
 [worldserver]
 
-#  9/18
+#  10/18
 #
 #    AnnounceEnable
 #        Description: Enable the module announcing its presence.
@@ -33,7 +33,7 @@ TrialRaidLimit = 0
 
 #
 #    TrialBattlegroundLimit
-#        Description: nyi
+#        Description: Limits the amount of battlegrounds able to be played by a class trial character.
 #        Default:     0
 
 TrialBattlegroundLimit = 0

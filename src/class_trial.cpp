@@ -60,6 +60,18 @@ public:
         return true;
     }
 
+    bool CanJoinInBattlegroundQueue(Player* player, ObjectGuid /*BattlemasterGuid*/, BattlegroundTypeId /*BGTypeID*/, uint8 /*joinAsGroup*/, GroupJoinBattlegroundResult& /*err*/) override
+    {
+        if (!isTrialCharacter(player))
+            return true;
+
+        AchievementCriteriaEntry const* bgCount = sAchievementCriteriaStore.LookupEntry(839);
+
+        if (player->GetAchievementMgr()->GetCriteriaProgress(bgCount)->counter > sConfigMgr->GetOption<uint32>("TrialBattlegroundLimit", 0))
+            return false;
+        return true;
+    }
+
     static void imbueTrial(Player* player)
     {
         enlistTrial(player);
