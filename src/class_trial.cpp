@@ -14,12 +14,13 @@ public:
             ChatHandler(player->GetSession()).SendSysMessage(ALERT_MODULE_PRESENCE);
 
         if (!isTrialCharacter(player))
-            return;
+            return; // Not a class trial, don't do anything.
         if (sConfigMgr->GetOption<bool>("AllowCustomize", true))
             player->SetAtLoginFlag(AT_LOGIN_CUSTOMIZE);
         if (sConfigMgr->GetOption<bool>("AllowRaceChange", true))
             player->SetAtLoginFlag(AT_LOGIN_CHANGE_RACE);
-
+        if (sConfigMgr->GetOption<uint32>("TrialPlaytimeLimit", 0) > player->m_Played_time[PLAYED_TIME_TOTAL])
+            trialDelete(player);
         return;
     };
 
@@ -42,6 +43,14 @@ public:
             return true;
         else
             return false;
+    }
+
+    static void trialDelete(Player* player)
+    {
+        uint32 account = player->GetSession()->GetAccountId();
+        ObjectGuid guid = player->GetGUID();
+        player->GetSession()->KickPlayer();
+        player->DeleteFromDB(guid.GetCounter(), account, true, true);
     }
 
 private:
