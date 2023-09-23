@@ -20,7 +20,7 @@ public:
             player->SetAtLoginFlag(AT_LOGIN_CUSTOMIZE);
         if (sConfigMgr->GetOption<bool>("AllowRaceChange", true))
             player->SetAtLoginFlag(AT_LOGIN_CHANGE_RACE);
-        if (sConfigMgr->GetOption<uint32>("TrialPlaytimeLimit", 0) > player->m_Played_time[PLAYED_TIME_TOTAL])
+        if ((player->m_Played_time[PLAYED_TIME_TOTAL] >= sConfigMgr->GetOption<uint32>("TrialPlaytimeLimit", 0)) && sConfigMgr->GetOption<uint32>("TrialPlaytimeLimit", 0) != 0)
             trialDelete(player);
         return;
     };
@@ -137,7 +137,7 @@ public:
 
     static bool trialHelper(ChatHandler* handler)
     {
-        if (sConfigMgr->GetOption<bool>("ClassTrialEnable", false))
+        if (!sConfigMgr->GetOption<bool>("ClassTrialEnable", true))
         {
             handler->SendSysMessage(ALERT_MODULE_DISABLED);
             return true;
