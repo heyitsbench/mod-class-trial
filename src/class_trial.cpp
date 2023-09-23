@@ -4,9 +4,9 @@
 #include "Player.h"
 #include "ScriptMgr.h"
 
-class trialannounce : public PlayerScript {
+class TrialAnnounce : public PlayerScript {
 public:
-    trialannounce() : PlayerScript("trial-announce") { }
+    TrialAnnounce() : PlayerScript("TrialAnnounce") { }
 
     void OnLogin(Player* player) override
     {
@@ -23,9 +23,9 @@ private:
     };
 };
 
-class applyTrial : public PlayerScript {
+class TrialOperation : public PlayerScript {
 public:
-    applyTrial() : PlayerScript("applyTrial") { }
+    TrialOperation() : PlayerScript("TrialOperation") { }
 
     static void imbueTrial(Player* player)
     {
@@ -34,9 +34,9 @@ public:
 
 using namespace Acore::ChatCommands;
 
-class class_trial_commandscript : public CommandScript {
+class TrialCommands : public CommandScript {
 public:
-    class_trial_commandscript() : CommandScript("class_trial_commandscript") { }
+    TrialCommands() : CommandScript("TrialCommands") { }
 
     ChatCommandTable GetCommands() const override
     {
@@ -54,7 +54,7 @@ public:
             handler->SendSysMessage(ALERT_MODULE_DISABLED);
             return true;
         }
-        applyTrial::imbueTrial(handler->GetPlayer());
+        TrialOperation::imbueTrial(handler->GetPlayer());
         return true;
     }
 
@@ -67,11 +67,11 @@ private:
 
 void Add_class_trial()
 {
-    new applyTrial();
-    new trialannounce();
+    new TrialOperation();
+    new TrialAnnounce();
 }
 
 void AddSC_class_trial_commandscript()
 {
-    new class_trial_commandscript();
+    new TrialCommands();
 }
