@@ -111,6 +111,7 @@ public:
         ObjectGuid guid = player->GetGUID();
         player->GetSession()->KickPlayer();
         player->DeleteFromDB(guid.GetCounter(), account, true, true);
+        WorldDatabase.Execute("DELETE FROM mod_classtrial_characters WHERE GUID = {}", player->GetGUID().GetCounter());
     }
 
 private:
